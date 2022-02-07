@@ -1,4 +1,4 @@
-const Admin = require('../api/admins/admins.model')
+const Admin = require('../api/users/users.model')
 const { setError } = require('../utils/error/error')
 const { verifyJwt } = require('../utils/jwt/jwtUtils')
 
