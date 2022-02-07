@@ -1,35 +1,29 @@
-const Admin = require('../api/users/users.model')
+const User = require('../api/users/users.model')
 const { setError } = require('../utils/error/error')
-const { verifyJwt } = require('../utils/jwt/jwtUtils')
+const { verifyJwt } = require('../utils/jwt/jwt')
 
-const isAdmin = (req, res, next) => {
+const isUser = (req, res, next) => {
 
     try {
 
         const token = req.headers.authorization
 
         if (!token) {
-
             return next(setError(404, 'Unauthorized'));
-
         }
 
         const parsedToken = token.replace('Bearer ', '')
         const validToken = verifyJwt(parsedToken, process.env.JWT_SECRET)
-        const adminLogued = Admin.findById(validToken.id)
+        const userLogued = User.findById(validToken.id)
 
-        adminLogued.password = null
-
-        req.admin = adminLogued
-
+        userLogued.password = null
+        req.user = userLogued
         next()
         
     } catch (error) {
-
         return next(error)
-        
     }
 
 }
 
-module.exports = { isAdmin }
+module.exports = { isUser }

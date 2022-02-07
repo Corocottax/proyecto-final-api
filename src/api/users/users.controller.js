@@ -2,17 +2,20 @@ const User = require("./users.model");
 const bcrypt = require("bcrypt");
 const { setError } = require("../../utils/error/error");
 const { generateSign } = require("../../utils/jwt/jwt");
-const deleteFile = require("../../middlewares/deleteFile");
+const {deleteFile} = require("../../middlewares/deleteFile");
 
 const postNewUser = async (req, res, next) => {
   try {
     const newUser = new User(req.body);
     const userDuplicate = await User.findOne({ email: newUser.email });
+    console.log("hola");
+    console.log(req.file);
+    if (req.file) {
+        console.log("if photo");
+      newUser.photo = req.file.path;
+    }
     if (userDuplicate) {
       return next(setError(404, "Email existente"));
-    }
-    if (req.file) {
-      newUser.photo = req.file.path;
     }
     const userDB = await newUser.save();
     return res.status(201).json(userDB);
@@ -64,7 +67,7 @@ const patchUser = async (req, res, next) => {
     }
     return res.status(200).json({ new: patchUser, old: UserDB });
   } catch (error) {
-    return next(setError(500, "User cant be replaced :chipmunk:"));
+    return next(setError(500, "User cant be replaced"));
   }
 };
 

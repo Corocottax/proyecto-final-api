@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, trim: true, required: true },
     age: { type: Number, trim: true, required: true},
     adresses: [{ type: String, trim: true}],
-    favorites: { type: String, trim: true},
+    favorites: [{ type: String, trim: true}],
 
 
 }, { timestamps: true, collection: 'users'})
