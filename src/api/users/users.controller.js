@@ -7,11 +7,6 @@ const deleteFile = require("../../middlewares/deleteFile");
 const postNewUser = async (req, res, next) => {
   try {
     const newUser = new User(req.body);
-    newGame.name = req.body.name;
-    newGame.type = req.body.type;
-    newGame.year = req.body.year;
-    newGame.characters = req.body.characters;
-    newGame.platform = req.body.platform;
     const userDuplicate = await User.findOne({ email: newUser.email });
     if (userDuplicate) {
       return next(setError(404, "Email existente"));
