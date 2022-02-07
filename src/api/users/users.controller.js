@@ -2,7 +2,7 @@ const User = require("./users.model");
 const bcrypt = require("bcrypt");
 const { setError } = require("../../utils/error/error");
 const { generateSign } = require("../../utils/jwt/jwt");
-const {deleteFile} = require("../../middlewares/deleteFile");
+const { deleteFile } = require("../../middlewares/deleteFile");
 
 const postNewUser = async (req, res, next) => {
   try {
@@ -11,7 +11,6 @@ const postNewUser = async (req, res, next) => {
     console.log("hola");
     console.log(req.file);
     if (req.file) {
-        console.log("if photo");
       newUser.photo = req.file.path;
     }
     if (userDuplicate) {
@@ -55,15 +54,14 @@ const patchUser = async (req, res, next) => {
     const patchUser = new User(req.body);
     patchUser._id = id;
     const UserDB = await User.findByIdAndUpdate(id, patchUser);
-    if (req.file) {
-      patchUsers.img = req.file.path;
+    if (UserDB.photo) {
+      deleteFile(UserDB.photo);
     }
-
+    if (req.file) {
+      patchUser.photo = req.file.path;
+    }
     if (!UserDB) {
       return next(setError(404, "User not found"));
-    }
-    if (userDB.photo) {
-      deleteFile(userDB.photo);
     }
     return res.status(200).json({ new: patchUser, old: UserDB });
   } catch (error) {
@@ -87,14 +85,11 @@ const getUser = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const userDB = await Pc.findOneAndDelete({ id: id });
+    const userDB = await User.findOneAndDelete({ id: id });
 
-    if (id != req.params.id) {
-      return next(setError(403, "Forbidden"));
-    }
-    /*  if (!userDB) {
+    if (!userDB) {
       return next(setError(404, "Error deleting user"));
-    } */
+    }
     if (userDB.img) {
       deleteFile(userDB.img);
     }

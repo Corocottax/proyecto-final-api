@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2
 const UserRoutes = require('./src/api/users/users.routes');
+const MascotasRoutes = require('./src/api/mascotas/mascotas.routes');
 
 const { setError } = require('./src/utils/error/error');
 const { connectDb } = require('./src/utils/database/database');
@@ -38,6 +39,7 @@ app.use(express.urlencoded({ limit: '5mb', extended: true }))
 
 
 app.use('/api/users', UserRoutes)
+app.use('/api/mascotas', MascotasRoutes)
 
 app.use('*', (req, res, next) => {
     return next(setError(404, 'Route not found'))
