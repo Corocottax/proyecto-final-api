@@ -19,7 +19,8 @@ const isUser = (req, res, next) => {
     return next(error);
   }
 };
-const isProtectora = (req, res, next) => {
+
+const isProtectora = async (req, res, next) => {
   try {
     const token = req.headers.authorization;
     if (!token) {
@@ -27,17 +28,43 @@ const isProtectora = (req, res, next) => {
     }
     const parsedToken = token.replace("Bearer ", "");
     const validToken = verifyJwt(parsedToken, process.env.JWT_SECRET);
-    const userLogued = User.findById(validToken.id);
-    if (userLogued.rol === "protectora") {
-      userLogued.password = null;
-      req.user = userLogued;
+    const userLogued = await User.findById(validToken.id);
+    const user =  userLogued.toJSON()
+    console.log(userLogued);
+    if (user.rol === "protectora") {
+      user.password = null;
+      req.user = user;
       next();
     } else {
-      return next("No es autorizado" + error);
+        return next(setError(404, "Unauthorized"));
+    }
+  } catch (error) {
+    return next(error);
+  }
+};
+const isAdmin = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization;
+    if (!token) {
+      return next(setError(404, "Unauthorized"));
+    }
+    const parsedToken = token.replace("Bearer ", "");
+    const validToken = verifyJwt(parsedToken, process.env.JWT_SECRET);
+    const userLogued = await User.findById(validToken.id);
+    const user =  userLogued.toJSON()
+    console.log(userLogued);
+    if (user.rol === "admin") {
+      user.password = null;
+      req.user = user;
+      next();
+    } else {
+        return next(setError(404, "Unauthorized"));
     }
   } catch (error) {
     return next(error);
   }
 };
 
-module.exports = { isUser, isProtectora };
+
+
+module.exports = { isUser, isProtectora, isAdmin };

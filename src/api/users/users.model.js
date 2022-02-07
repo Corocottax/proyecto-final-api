@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
     favorites: [{ type: String, trim: true}],
     rol: { type: String, trim: true, required: true },
     adress: { type: String, trim: true},
+    adoptionStatus: [{ type: String, trim: true }]
 }, { timestamps: true, collection: 'users'})
 
 userSchema.pre("save", function (next) {

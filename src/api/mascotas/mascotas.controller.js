@@ -26,7 +26,8 @@ const postNewMascota = async (req, res, next) => {
     newMascota.requisitosAdopcion = req.body.requisitosAdopcion 
     newMascota.comentarios = req.body.comentarios 
     newMascota.precio = req.body.precio 
-    newMascota.envio = req.body.envio 
+    newMascota.envio = req.body.envio
+    newMascota.estadoAdopcion = req.body.estadoAdopcion
 
     const mascotaDB = await newMascota.save();
     return res.status(201).json(mascotaDB);
