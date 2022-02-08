@@ -9,7 +9,7 @@ const mascotaSchema = new mongoose.Schema({
     tamaño: { type: String, trim: true},
     especie: { type: String, trim: true},
     nacimiento: { type: String, trim: true},
-    peso: { type: Number, trim: true},
+    peso: { type: String, trim: true},
     personalidad: [{ type: String, trim: true}],
     historia: { type: String, trim: true},
     vacunado: { type: Boolean, trim: true},
