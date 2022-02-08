@@ -1,4 +1,4 @@
-const MascotasRoutes = require('express').Router();
+ const MascotasRoutes = require('express').Router();
 const upload = require("../../middlewares/file")
 const { postNewMascota, patchMascota, getMascota, getAllMascota, deleteMascota } = require('./mascotas.controller');
 const {isProtectora, isUser}= require("../../middlewares/auth")
