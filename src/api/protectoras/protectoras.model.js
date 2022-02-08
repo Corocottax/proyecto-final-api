@@ -3,20 +3,18 @@ const bcrypt = require('bcrypt')
 const { validationPassword, validationEmail } = require('../../utils/validators/validators')
 const { setError } = require('../../utils/error/error')
 
-const userSchema = new mongoose.Schema({
+const protectoraSchema = new mongoose.Schema({
     name: { type: String, trim: true },
-    photo: { type: String, trim: true},
+    logo: { type: String, trim: true},
     email: { type: String, trim: true, required: true, unique: true },
     password: { type: String, trim: true, required: true },
-    age: { type: Number, trim: true},
-    adresses: [{ type: String, trim: true}],
-    favorites: [{ type: String, trim: true}],
-    rol: { type: String, default:"user", trim: true, required: true },
+    rol: { type: String, default:"protectora" ,trim: true, required: true },
+    adress: { type: String, trim: true},
     adoptionStatus: [{ type: String, trim: true }]
+    
+}, { timestamps: true, collection: 'protectoras'})
 
-}, { timestamps: true, collection: 'users'})
-
-userSchema.pre("save", function (next) {
+protectoraSchema.pre("save", function (next) {
     if (!validationEmail(this.email)) { 
         return next(setError(400, "El email debe cumplir el patrón, ejemplo@ejemplo.com"))
     } if (!validationPassword(this.password)) {
@@ -26,5 +24,5 @@ userSchema.pre("save", function (next) {
     next();
 });
 
-const User = mongoose.model('users', userSchema)
-module.exports = User
+const Protectora = mongoose.model('protectoras', protectoraSchema)
+module.exports = Protectora

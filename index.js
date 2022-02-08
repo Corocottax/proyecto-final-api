@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2
 const UserRoutes = require('./src/api/users/users.routes');
+const ProtectoraRoutes = require('./src/api/protectoras/protectoras.routes');
 const MascotasRoutes = require('./src/api/mascotas/mascotas.routes');
 const NewsRoutes = require('./src/api/noticias/noticias.routes');
 
@@ -40,6 +41,7 @@ app.use(express.urlencoded({ limit: '5mb', extended: true }))
 
 
 app.use('/api/users', UserRoutes)
+app.use('/api/protectoras', ProtectoraRoutes)
 app.use('/api/mascotas', MascotasRoutes)
 app.use('/api/noticias', NewsRoutes)
 
