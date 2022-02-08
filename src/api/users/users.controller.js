@@ -25,7 +25,7 @@ const postNewUser = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
   try {
-    const userDB = await User.findOne({ email: req.body.email });
+    const userDB = await (await User.findOne({ email: req.body.email }));
     if (!userDB) {
       return next(setError(404, "User not found"));
     }
@@ -72,7 +72,7 @@ const patchUser = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const userDB = await User.findById(id);
+    const userDB = await User.findById(id).populate("mascotas");
     if (!userDB) {
       return next(setError(404, "User not found"));
     }
