@@ -22,7 +22,7 @@ const mascotaSchema = new mongoose.Schema({
     comentarios: { type: String, trim: true},
     precio: { type: String, trim: true},
     envio: { type: String, trim: true},
-    estadoAdopcion: { type: String, trim: true}
+    users: [{type: mongoose.Schema.Types.ObjectId, trim: true}],
 }, { timestamps: true, collection: 'pets'})
 
 

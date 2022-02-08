@@ -10,7 +10,8 @@ const protectoraSchema = new mongoose.Schema({
     password: { type: String, trim: true, required: true },
     rol: { type: String, default:"protectora" ,trim: true, required: true },
     adress: { type: String, trim: true},
-    adoptionStatus: [{ type: String, trim: true }]
+    adoptionStatus: [{ type: String, trim: true }],
+    mascotas: [{ type: mongoose.Schema.Types.ObjectId, ref:"mascotas", trim: true }],
     
 }, { timestamps: true, collection: 'protectoras'})
 
