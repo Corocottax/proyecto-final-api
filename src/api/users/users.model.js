@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     adresses: [{ type: String, trim: true}],
     favorites: [{ type: String, trim: true}],
     rol: { type: String, default:"user", trim: true, required: true },
-    estadoAdopcion: { type: String, trim: true},
+    estadoAdopcion: [{ type: String, trim: true}],
     mascotas: [{ type: mongoose.Schema.Types.ObjectId, ref:"mascotas", trim: true }],
 }, { timestamps: true, collection: 'users'})
 
