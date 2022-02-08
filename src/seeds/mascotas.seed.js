@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const mongoDb = "mongodb+srv://root:VlKxKs9jSU5t8Dnz@cluster0.te3q9.mongodb.net/Protectora?retryWrites=true&w=majority";
-const mascotaSchema = require("../api/mascota/mascota.model");
+const mascotaSchema = require("../api/mascotas/mascotas.model");
 const mascota=[
   {
     "nombre":"pepo",
