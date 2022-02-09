@@ -29,6 +29,19 @@ const getAllNew = async (req, res, next) => {
   }
 };
 
+const getNew = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const NewDB = await New.findById(id);
+    if (!NewDB) {
+      return next(setError(404, "New not found"));
+    }
+    return res.status(200).json(NewDB);
+  } catch (error) {
+    return next(setError(404, "New server fail"));
+  }
+};
+
 const deleteNew = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -50,4 +63,5 @@ module.exports = {
   postNewNew,
   getAllNew,
   deleteNew,
+  getNew
 };
