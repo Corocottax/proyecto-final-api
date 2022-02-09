@@ -46,27 +46,16 @@ const NoticiasDocuments = noticias.map((noticia) => new noticiaSchema(noticia));
 console.log(mongoDB);
 
 mongoose.connect(mongoDB, {
-
     useNewUrlParser: true,
     useUnifiedTopology: true,
-
-}).then(async () => {
-
-    const allNoticias = await noticiaSchema.find();
-
-    if (allNoticias.length) {
-
-      await noticiaSchema.collection.drop();
-
-    }
-
-}).catch((err) => console.log(`Error makings news: ${err}`))
-  
+})
 .then(async () => {
-
-    await noticiaSchema.insertMany(NoticiasDocuments);
-
-
+    const allNoticias = await noticiaSchema.find();
+    if (allNoticias.length) {
+      await noticiaSchema.collection.drop();
+    }
 }).catch((err) => console.log(`Error makings news: ${err}`))
-  
+.then(async () => {
+    await noticiaSchema.insertMany(NoticiasDocuments);
+}).catch((err) => console.log(`Error makings news: ${err}`))
 .finally(() => mongoose.disconnect());

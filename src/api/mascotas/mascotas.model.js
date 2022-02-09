@@ -9,20 +9,20 @@ const mascotaSchema = new mongoose.Schema({
     tamaño: { type: String, trim: true},
     especie: { type: String, trim: true},
     nacimiento: { type: String, trim: true},
-    peso: { type: Number, trim: true},
+    peso: { type: String, trim: true},
     personalidad: [{ type: String, trim: true}],
     historia: { type: String, trim: true},
     vacunado: { type: Boolean, trim: true},
     desparasitado: { type: Boolean, trim: true},
     sano: { type: Boolean, trim: true},
     esterilizado: { type: Boolean, trim: true},
-    idenfificado: { type: Boolean, trim: true},
+    identificado: { type: Boolean, trim: true},
     microchip: { type: Boolean, trim: true},
     requisitosAdopcion: { type: String, trim: true},
     comentarios: { type: String, trim: true},
     precio: { type: String, trim: true},
     envio: { type: String, trim: true},
-    estadoAdopcion: { type: String, trim: true}
+    users: [{type: mongoose.Schema.Types.ObjectId, trim: true}],
 }, { timestamps: true, collection: 'pets'})
 
 
