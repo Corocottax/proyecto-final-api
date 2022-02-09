@@ -4,8 +4,8 @@ const { postNewNew, getAllNew, deleteNew, getNew} = require('./noticias.controll
 const {isUser, isAdmin}= require("../../middlewares/auth")
 
 NewsRoutes.post('/', upload.single('img'), postNewNew)
-NewsRoutes.get('/', [isUser], getAllNew)
-NewsRoutes.get("/:id", [isUser], getNew)
+NewsRoutes.get('/', getAllNew)
+NewsRoutes.get("/:id", getNew)
 NewsRoutes.delete('/:id', [isAdmin], deleteNew)
 NewsRoutes.delete('/:id', deleteNew)
 
