@@ -25,7 +25,7 @@ const postNewUser = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
   try {
-    const userDB = await (await User.findOne({ email: req.body.email }));
+    const userDB = await User.findOne({ email: req.body.email });
     if (!userDB) {
       return next(setError(404, "User not found"));
     }
