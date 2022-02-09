@@ -17,7 +17,7 @@ const mascota=[
     "vacunado":true,
     "desparasitado":true,
     "sano":true,
-    "esterelizado":true,
+    "esterilizado":true,
     "identificado":true,
     "microchip":true,
     "requisitosAdopcion":"Espacio abierto en residencia",

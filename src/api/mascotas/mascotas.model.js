@@ -16,7 +16,7 @@ const mascotaSchema = new mongoose.Schema({
     desparasitado: { type: Boolean, trim: true},
     sano: { type: Boolean, trim: true},
     esterilizado: { type: Boolean, trim: true},
-    idenfificado: { type: Boolean, trim: true},
+    identificado: { type: Boolean, trim: true},
     microchip: { type: Boolean, trim: true},
     requisitosAdopcion: { type: String, trim: true},
     comentarios: { type: String, trim: true},
