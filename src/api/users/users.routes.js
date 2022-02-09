@@ -5,10 +5,10 @@ const {isUser}= require("../../middlewares/auth")
 
 UserRoutes.post('/', uploadProfile.single('photo'), postNewUser)
 UserRoutes.post('/login', loginUser)
-UserRoutes.post('/logout', [isUser], logoutUser)
+UserRoutes.post('/logout', logoutUser)
 UserRoutes.get('/:id', getUser)
-UserRoutes.patch('/profile/:id',[isUser] , uploadProfile.single('photo'), patchUser)
-UserRoutes.delete('/:id', [isUser], deleteUser)
+UserRoutes.patch('/profile/:id', uploadProfile.single('photo'), patchUser)
+UserRoutes.delete('/:id', deleteUser)
 
 
 module.exports = UserRoutes
