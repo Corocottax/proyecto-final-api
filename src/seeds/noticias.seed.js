@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const mongoDB = "mongodb+srv://root:VlKxKs9jSU5t8Dnz@cluster0.te3q9.mongodb.net/Protectora?retryWrites=true&w=majority";
-const noticiaSchema = require("../../api/noticias/noticias.model.js");
+const noticiaSchema = require("../api/noticias/noticias.model");
 
 const noticias = [
     {
