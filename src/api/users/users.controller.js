@@ -31,7 +31,7 @@ const loginUser = async (req, res, next) => {
     }
     if (bcrypt.compareSync(req.body.password, userDB.password)) {
       const token = generateSign(userDB._id, userDB.email);
-      return res.status(200).json(token);
+      return res.status(200).json({userDB, token});
     }
   } catch (error) {
     error.message = "error Login";
