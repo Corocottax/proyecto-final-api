@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 })
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:4200', 'https://proyecto-final-react-git-master-corocottax.vercel.app', 'proyecto-final-react-corocottax.vercel.app', 'proyecto-final-react-vert.vercel.app'],
+    origin: ['http://localhost:3000', 'http://localhost:4200', 'https://proyecto-final-react-git-master-corocottax.vercel.app', 'https://proyecto-final-react-corocottax.vercel.app', 'https://proyecto-final-react-vert.vercel.app'],
     credentials: true
 }))
 
