@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     password: { type: String, trim: true, required: true },
     age: { type: Number, trim: true},
     adresses: [{ type: String, trim: true}],
-    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref:"mascotas", trim: true}],
+    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref:"favorites", trim: true}],
     rol: { type: String, default:"user", trim: true, required: true },
     estadoAdopcion: [{ type: String, trim: true}],
     mascotas: [{ type: mongoose.Schema.Types.ObjectId, ref:"mascotas", trim: true }],
