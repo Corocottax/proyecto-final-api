@@ -72,7 +72,7 @@ const patchUser = async (req, res, next) => {
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const userDB = await User.findById(id).populate("mascotas", "favorites");
+    const userDB = await User.findById(id).populate("mascotas");
     if (!userDB) {
       return next(setError(404, "User not found"));
     }
